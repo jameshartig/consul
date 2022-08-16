@@ -631,7 +631,7 @@ func (p *ConnPool) rpc(dc string, nodeName string, addr net.Addr, method string,
 
 	// Use the zero value if the request doesn't implement RPCInfo
 	if info, ok := args.(structs.RPCInfo); ok {
-		sc.stream.FirstReadTimeout = info.Timeout(p.Timeout, p.MaxQueryTime, p.DefaultQueryTime)
+		sc.stream.FirstReadTimeout = info.Timeout(p.Timeout, p.MaxQueryTime, p.DefaultQueryTime) + time.Minute
 	}
 
 	// Make the RPC call
